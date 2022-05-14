@@ -1,6 +1,6 @@
 import streamlit as st  # pip3 install streamlit
 import lapin
-import os
+import os.path
 import time
 
 st.set_page_config(
@@ -19,7 +19,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 todo = []
 uploaded_file = st.file_uploader('Choisir un fichier txt ', type='txt')
 def write_to_file(text):
-      fb=open("base.txt","w",encoding="utf-8")
+      fb=open(os.path.join("results","base.txt"),"w",encoding="utf-8")
       for i in range(len(text)):
           fb.write(f"{todo[i]}\n")
       fb.close()

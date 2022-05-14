@@ -35,7 +35,12 @@ def return_data(file):
 def main():
     global name
     todo=[]
-    f=open("base.txt","r+",encoding='utf-8')
+    try:
+     os.mkdir("results")
+    except Exception:
+     pass
+
+    f=open(os.path.join("results","base.txt"),"r+",encoding='utf-8')
     main.name = return_result()
     fr=open( os.path.join("results",main.name),'w+', encoding="utf8")
     for line in f:
