@@ -2,6 +2,7 @@ from distutils.log import error
 import time
 from datetime import datetime
 import os
+import os.path
 def index(str,find):
     index = str.find(find)
     return index
@@ -29,14 +30,14 @@ def return_result():
     filename = current_time+extension
     return filename
 def return_data(file):
-    f=open(file,'r+', encoding="utf8")
+    f=open(os.path.join("results",file),'r+', encoding="utf8")
     return f
 def main():
     global name
     todo=[]
     f=open("base.txt","r+",encoding='utf-8')
     main.name = return_result()
-    fr=open(main.name,'w+', encoding="utf8")
+    fr=open( os.path.join("results",main.name),'w+', encoding="utf8")
     for line in f:
         line = line.rstrip()
         todo = line.split(':')
@@ -49,6 +50,8 @@ def main():
             error
         if check_passwd(passwd):
             fr.write(f"{mail}:{passwd}\n")
+    fr.close()
+    f.close()
 
 if __name__ == "__main__":
     tic = time.perf_counter()
